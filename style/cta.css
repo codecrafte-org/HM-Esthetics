@@ -1,0 +1,93 @@
+.final-cta-section {
+    padding: 180px 0;
+    position: relative;
+    background: url('https://images.unsplash.com/photo-1519415355175-7527b21d847d?q=80&w=2000') no-repeat center center/cover;
+    background-attachment: fixed; /* Parallax effect */
+    text-align: center;
+    color: #fff;
+}
+
+.cta-bg-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75); /* Dark overlay for text readability */
+}
+
+.relative-z { position: relative; z-index: 10; }
+
+.script-tag-white {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.5rem;
+    color: #fff;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.cta-main-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    text-transform: uppercase;
+    line-height: 1;
+    letter-spacing: -1px;
+}
+
+.italic-gold {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: var(--primary);
+    text-transform: none;
+}
+
+.cta-sub {
+    font-weight: 200;
+    opacity: 0.8;
+    margin: 30px auto 50px;
+    max-width: 500px;
+    font-size: 1.1rem;
+}
+
+/* Button Group */
+.cta-button-group {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.btn-primary-gold {
+    background: var(--primary);
+    color: #000;
+    padding: 20px 45px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    transition: 0.4s;
+}
+
+.btn-outline-white {
+    border: 1px solid rgba(255,255,255,0.3);
+    color: #fff;
+    padding: 20px 45px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    transition: 0.4s;
+    backdrop-filter: blur(10px);
+}
+
+.btn-primary-gold:hover { background: #fff; transform: translateY(-5px); }
+.btn-outline-white:hover { border-color: var(--primary); color: var(--primary); transform: translateY(-5px); }
+
+/* --- MOBILE RESPONSIVE --- */
+@media (max-width: 768px) {
+    .final-cta-section { padding: 100px 0; background-attachment: scroll; }
+    .cta-button-group { flex-direction: column; align-items: center; }
+    .btn-primary-gold, .btn-outline-white { width: 90%; }
+}

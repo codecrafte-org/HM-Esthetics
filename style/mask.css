@@ -1,0 +1,103 @@
+.analysis-mask-section {
+    padding: 100px 0;
+    background: #000;
+    text-align: center;
+    overflow: hidden;
+}
+
+.video-container {
+    position: relative;
+    width: 100%;
+    height: 400px; /* Text box ki height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.mask-video {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+/* SVG Overlay jo video ko cut karega */
+.svg-mask {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 2;
+}
+
+.mota-text {
+    font-family: 'Syne', sans-serif;
+    font-size: 15rem; /* Bara size */
+    font-weight: 900; /* Extra Mota */
+    fill: black; /* Ye part video ko show karega */
+}
+
+/* Content Styling */
+.analysis-content {
+    position: relative;
+    z-index: 10;
+    margin-top: -80px; /* Text ke thora kareeb */
+}
+
+.analysis-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2rem, 6vw, 4rem);
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.italic-font {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: var(--primary);
+}
+
+.analysis-p {
+    font-weight: 300;
+    opacity: 0.8;
+    color: #fff;
+    margin-bottom: 40px;
+}
+
+/* --- BUTTON FIX (Ab Nazar Aayega) --- */
+.btn-wrapper {
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+}
+
+.cta-luxury-btn {
+    background: var(--primary); /* Gold/Nude color */
+    color: #000 !important; /* Text Black for contrast */
+    padding: 20px 45px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    display: inline-block;
+    transition: 0.3s;
+    box-shadow: 0 10px 30px rgba(212, 180, 153, 0.3);
+}
+
+.cta-luxury-btn:hover {
+    transform: translateY(-5px);
+    background: #fff;
+}
+
+/* Mobile Fix */
+@media (max-width: 768px) {
+    .mota-text { font-size: 7rem; }
+    .video-container { height: 250px; }
+    .analysis-content { margin-top: 0; }
+    .cta-luxury-btn { width: 85%; padding: 15px 20px; }
+}

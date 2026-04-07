@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HM AESTHETIC | Luxury Clinic</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:italic,wght@300;600&family=Syne:wght@400;700;800&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style/hero.css">
+    <link rel="stylesheet" href="./style/service.css">
+    <link rel="stylesheet" href="./style/trust.css">
+    <link rel="stylesheet" href="./style/mask.css">
+    <link rel="stylesheet" href="./style/social.css">
+    <link rel="stylesheet" href="./style/trans.css">
+    <link rel="stylesheet" href="./style/faq.css">
+    <link rel="stylesheet" href="./style/cta.css">
+    <link rel="stylesheet" href="./style/footer.css">
+    <link rel="stylesheet" href="./style/kinet.css">
+</head>
+<body>
+
+   <header class="navbar" id="main-nav">
+    <div class="nav-container">
+        <div class="nav-left desktop-only">
+            <a href="#services" class="nav-link">Treatments</a>
+            <a href="#gallery" class="nav-link">Gallery</a>
+        </div>
+
+        <div class="nav-logo">
+            <h1 class="brand-name">HM <span class="aesthetic-word">Aesthetic</span></h1>
+        </div>
+
+        <div class="nav-right">
+            <div class="desktop-only">
+                <a href="#faq" class="nav-link" style="margin-right: 20px;">FAQs</a>
+                <button class="book-btn">Book Now</button>
+            </div>
+            
+            <div class="menu-toggle" id="menu-btn">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <div class="sidebar-overlay" id="overlay"></div>
+    <aside class="sidebar" id="sidebar">
+        <div class="close-sidebar" id="close-btn">&times;</div>
+        <nav class="sidebar-nav">
+            <a href="#home">Home</a>
+            <a href="#services">Services</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </aside>
+
+    <main>
+        <section class="hero-video-section">
+            <div class="video-overlay"></div>
+            <video autoplay muted loop playsinline class="bg-video">
+                <source src="./videos/hero.mp4" type="video/mp4">
+            </video>
+
+            <div class="hero-content">
+                <span class="script-reveal">Timeless Elegance</span>
+                <h1 class="hero-title">Reimagining <br><span class="stylish-accent">Human Art.</span></h1>
+                <p class="hero-desc">Bespoke aesthetic treatments tailored to your unique anatomy.</p>
+                <a href="#services"><button class="btn-primary">Explore Services</button></a>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+const sidebar = document.getElementById('sidebar');
+const closeBtn = document.getElementById('close-btn');
+const nav = document.getElementById('main-nav');
+
+// Sidebar Toggle
+menuBtn.addEventListener('click', () => {
+    sidebar.classList.add('active');
+});
+
+closeBtn.addEventListener('click', () => {
+    sidebar.classList.remove('active');
+});
+
+// Sticky Nav Scroll
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+        nav.classList.add('sticky');
+    } else {
+        nav.classList.remove('sticky');
+    }
+});
+
+// GSAP Reveal
+gsap.from(".hero-content > *", {
+    y: 30, opacity: 0, duration: 1, stagger: 0.2, ease: "power3.out"
+});
+    </script>
+
+
+<!--kkkkkkkkkkkkkkkkkkkkkkkkkk-->
+<section class="kinetic-experience-section">
+    <div class="chaos-wrapper">
+        <div class="chaos-line row-1"><span>REDEFINING BEAUTY • REDEFINING BEAUTY • </span></div>
+        <div class="chaos-line row-2"><span>AESTHETIC EXCELLENCE • AESTHETIC EXCELLENCE • </span></div>
+        <div class="chaos-line row-3"><span>THE GOLD STANDARD • THE GOLD STANDARD • </span></div>
+    </div>
+
+    <div class="experience-overlay">
+        <div class="container-center">
+            <div class="magnetic-content">
+                <span class="sub-reveal">Beyond Conventional</span>
+                <h2 class="main-reveal">Where Art Meets <br> <span class="outline-white">Anatomy</span></h2>
+                <p class="desc-reveal">Experience a transformation that feels as natural as it looks. We don't just treat; we curate your best version.</p>
+                
+                <div class="stat-grid">
+                    <div class="stat-item">
+                        <span class="stat-num">99%</span>
+                        <span class="stat-txt">Client Satisfaction</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-num">15k+</span>
+                        <span class="stat-txt">Successful Procedures</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    // Kinetic Parallax & Distortion
+document.addEventListener('mousemove', (e) => {
+    const x = (window.innerWidth / 2 - e.pageX) / 30;
+    const y = (window.innerHeight / 2 - e.pageY) / 30;
+
+    // Static text moves slightly (Magnetic effect)
+    gsap.to(".magnetic-content", {
+        x: x,
+        y: y,
+        duration: 1,
+        ease: "power2.out"
+    });
+
+    // Background blur reduces when mouse moves fast
+    const speed = Math.abs(x) + Math.abs(y);
+    gsap.to(".chaos-wrapper", {
+        filter: `blur(${Math.max(5, 20 - speed)}px)`,
+        opacity: Math.min(0.5, 0.2 + (speed / 50)),
+        duration: 0.5
+    });
+});
+
+// Scroll Trigger for Stat Numbers
+gsap.from(".stat-num", {
+    textContent: 0,
+    duration: 2,
+    ease: "power1.inOut",
+    snap: { textContent: 1 },
+    stagger: 0.5,
+    scrollTrigger: {
+        trigger: ".stat-grid",
+        start: "top 90%"
+    }
+});
+</script>
+
+
+
+
+    <!--serviceeeeeeeeeeeeeeeee-->
+
+<section class="services-final">
+    <div class="elite-header-center" style="text-align: center; margin-bottom: 50px;">
+        <span class="script-tag" style="color: #d4b499; font-style: italic; font-size: 1.5rem;">Elite Care</span>
+        <h2 style="color: #fff; font-family: 'Syne'; font-size: 3rem; text-transform: uppercase;">Our <span style="-webkit-text-stroke: 1px #fff; color: transparent;">Treatments</span></h2>
+    </div>
+
+    <div class="marquee-wrapper">
+        <div class="marquee-content">
+            <div class="s-card">
+                <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?q=80&w=600">
+                <div class="s-overlay">
+                    <h3>Botox & Fillers</h3>
+                    <a href="#" class="s-btn">See Pricing</a>
+                </div>
+            </div>
+            <div class="s-card">
+                <img src="https://images.unsplash.com/photo-1522338140262-f46f591261c8?q=80&w=600">
+                <div class="s-overlay">
+                    <h3>Hydra-Glow</h3>
+                    <a href="#" class="s-btn">See More</a>
+                </div>
+            </div>
+            <div class="s-card">
+                <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?q=80&w=600">
+                <div class="s-overlay">
+                    <h3>Laser Therapy</h3>
+                    <a href="#" class="s-btn">See Pricing</a>
+                </div>
+            </div>
+            <div class="s-card">
+                <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=600">
+                <div class="s-overlay">
+                    <h3>IV Nutrients</h3>
+                    <a href="#" class="s-btn">See More</a>
+                </div>
+            </div>
+            <div class="s-card">
+                <img src="https://images.unsplash.com/photo-1519415355175-7527b21d847d?q=80&w=600">
+                <div class="s-overlay">
+                    <h3>Jawline Sculpt</h3>
+                    <a href="#" class="s-btn">See Pricing</a>
+                </div>
+            </div>
+            <div class="s-card">
+                <img src="https://images.unsplash.com/photo-1498843053639-170ff2122f35?q=80&w=600">
+                <div class="s-overlay">
+                    <h3>Chemical Peels</h3>
+                    <a href="#" class="s-btn">See More</a>
+                </div>
+            </div>
+
+            <div class="s-card"><img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?q=80&w=600"><div class="s-overlay"><h3>Botox & Fillers</h3><a href="#" class="s-btn">See Pricing</a></div></div>
+            <div class="s-card"><img src="https://images.unsplash.com/photo-1522338140262-f46f591261c8?q=80&w=600"><div class="s-overlay"><h3>Hydra-Glow</h3><a href="#" class="s-btn">See More</a></div></div>
+            <div class="s-card"><img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?q=80&w=600"><div class="s-overlay"><h3>Laser Therapy</h3><a href="#" class="s-btn">See Pricing</a></div></div>
+            <div class="s-card"><img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=600"><div class="s-overlay"><h3>IV Nutrients</h3><a href="#" class="s-btn">See More</a></div></div>
+            <div class="s-card"><img src="https://images.unsplash.com/photo-1519415355175-7527b21d847d?q=80&w=600"><div class="s-overlay"><h3>Jawline Sculpt</h3><a href="#" class="s-btn">See Pricing</a></div></div>
+            <div class="s-card"><img src="https://images.unsplash.com/photo-1498843053639-170ff2122f35?q=80&w=600"><div class="s-overlay"><h3>Chemical Peels</h3><a href="#" class="s-btn">See More</a></div></div>
+        </div>
+    </div>
+
+    <div style="display: flex; justify-content: center; margin-top: 50px;">
+        <button class="btn-primary">View All Services</button>
+    </div>
+</section>
+
+
+<!--trusttttttttttttttttttttttt-->
+
+
+<section class="doctor-reels-section">
+    <div class="container-center">
+        <div class="elite-header-center">
+            <span class="script-tag">Expertise in Motion</span>
+            <h2 class="outline-title">Clinical <br> <span class="solid-text">Artistry</span></h2>
+            <div class="dr-profile">
+                <h3>DR. HASSAN MEHMOOD</h3>
+                <p>Specialist in Dermatology & Cosmetology</p>
+            </div>
+        </div>
+
+        <div class="reels-wrapper">
+            <div class="reel-box v-slow">
+                <video src="./videos/h1.mp4" loop muted playsinline autoplay></video>
+                <div class="reel-tag">Procedures</div>
+            </div>
+            <div class="reel-box v-fast">
+                <video src="./videos/h2.mp4" loop muted playsinline autoplay></video>
+                <div class="reel-tag">Consultation</div>
+            </div>
+            <div class="reel-box v-mid">
+                <video src="./videos/h3.mp4" loop muted playsinline autoplay></video>
+                <div class="reel-tag">Results</div>
+            </div>
+            <div class="reel-box v-slow-2">
+                <video src="./videos/h5.mp4" loop muted playsinline autoplay></video>
+                <div class="reel-tag">Care</div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    // Simple GSAP Parallax for the Reels
+if (window.innerWidth > 991) {
+    gsap.to(".v-fast", {
+        y: 60,
+        scrollTrigger: { trigger: ".reels-wrapper", scrub: 1 }
+    });
+    
+    gsap.to(".v-slow", {
+        y: -60,
+        scrollTrigger: { trigger: ".reels-wrapper", scrub: 1 }
+    });
+}
+
+// Hover Focus Effect
+const boxes = document.querySelectorAll('.reel-box');
+boxes.forEach(box => {
+    box.addEventListener('mouseenter', () => {
+        boxes.forEach(b => { if(b !== box) b.style.opacity = "0.3"; });
+    });
+    box.addEventListener('mouseleave', () => {
+        boxes.forEach(b => b.style.opacity = "1");
+    });
+});
+</script>
+
+<!-- mskkkkkkkkkkkkkkkkkkkkkkkkk-->
+
+<section class="analysis-mask-section">
+    <div class="mask-container">
+        
+        <div class="video-container">
+            <video autoplay muted loop playsinline class="mask-video">
+                <source src="./videos/skin.mp4" type="video/mp4">
+            </video>
+            
+            <svg class="svg-mask">
+                <defs>
+                    <mask id="masker" x="0" y="0" width="100%" height="100%">
+                        <rect x="0" y="0" width="100%" height="100%" fill="white" />
+                        <text x="50%" y="50%" dy=".35em" text-anchor="middle" class="mota-text">SKIN</text>
+                    </mask>
+                </defs>
+                <rect x="0" y="0" width="100%" height="100%" mask="url(#masker)" fill="black" />
+            </svg>
+        </div>
+
+        <div class="analysis-content">
+            <span class="script-tag-gold">Tailored For You</span>
+            <h3 class="analysis-title">Not sure what your <br> <span class="italic-font">skin needs?</span></h3>
+            <p class="analysis-p">Professional assessment for your unique glow.</p>
+            
+            <div class="btn-wrapper">
+                <a href="#" class="cta-luxury-btn">
+                    Start Virtual Consultation
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!--socialllllllllllllllllllllllllllllllllllllll-->
+
+<section class="review-marquee-section">
+    <div class="marquee-wrapper">
+        
+
+        <div class="marquee-line marquee-right">
+            <div class="marquee-content">
+                <span class="outline-tag">Dermal Sculpt</span>
+                <span class="outline-tag">Laser Therapy</span>
+                <span class="outline-tag">Facial Contour</span>
+                <span class="outline-tag">Chemical Peel</span>
+                <span class="outline-tag">Skin Rebirth</span>
+            </div>
+            <div class="marquee-content" aria-hidden="true">
+                <span class="outline-tag">Dermal Sculpt</span>
+                <span class="outline-tag">Laser Therapy</span>
+                <span class="outline-tag">Facial Contour</span>
+                <span class="outline-tag">Chemical Peel</span>
+                <span class="outline-tag">Skin Rebirth</span>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    // Hover hone par marquee slow ho jaye gi taake log parh saken
+const marquees = document.querySelectorAll('.marquee-content');
+
+marquees.forEach(m => {
+    m.addEventListener('mouseenter', () => {
+        m.style.animationPlayState = 'paused';
+    });
+    m.addEventListener('mouseleave', () => {
+        m.style.animationPlayState = 'running';
+    });
+});
+</script>
+
+<!--transformationnnnnnnnnnnnnnnnnnnnnnnnnn-->
+
+<section class="transformation-premium">
+    <div class="container-center">
+        <div class="elite-header-center">
+            <span class="script-tag">Clinical Results</span>
+            <h2 class="outline-title">The <span class="solid-text">Shift</span></h2>
+        </div>
+
+        <div class="t-grid">
+            <div class="comparison-container" id="lens-container">
+                <div class="img-before" style="background-image: url('https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?q=80&w=1000');"></div>
+                <div class="img-after" id="lens-after" style="background-image: url('https://images.unsplash.com/photo-1522338140262-f46f591261c8?q=80&w=1000');"></div>
+                <div class="lens-cursor" id="lens-cursor"></div>
+            </div>
+
+            <div class="t-content">
+                <div class="t-info-box">
+                    <span class="t-num">01. Procedure</span>
+                    <h3>Profile Balancing</h3>
+                    <p>A non-surgical approach to harmonizing facial features using premium structural fillers.</p>
+                </div>
+                <div class="t-info-box">
+                    <span class="t-num">02. Result</span>
+                    <h3>Instant Definition</h3>
+                    <p>Immediate structural improvement with zero downtime. Refines over 14 days.</p>
+                </div>
+                <button class="book-now-minimal">Inquire Now →</button>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    const container = document.getElementById('lens-container');
+const afterImg = document.getElementById('lens-after');
+const cursor = document.getElementById('lens-cursor');
+
+container.addEventListener('mousemove', (e) => {
+    const rect = container.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+
+    // After image ko circle ki shakal mein show karna
+    afterImg.style.clipPath = `circle(120px at ${x}% ${y}%)`;
+    
+    // Custom cursor circle ko move karna
+    cursor.style.display = 'block';
+    cursor.style.left = `${x}%`;
+    cursor.style.top = `${y}%`;
+});
+
+container.addEventListener('mouseleave', () => {
+    afterImg.style.clipPath = `circle(0% at 50% 50%)`;
+    cursor.style.display = 'none';
+});
+</script>
+
+<!-- FAQQQQQQQQQQQQQQQQQQQ-->
+
+<section class="faq-luxury-section" id="faq">
+    <div class="container-center">
+        <div class="elite-header-center">
+            <span class="script-tag">Concierge Service</span>
+            <h2 class="outline-title">Common <br> <span class="solid-text">Inquiries</span></h2>
+        </div>
+
+        <div class="faq-wrapper">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>How long do the results typically last?</h3>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Depending on the treatment, results can last from 6 months (for basic hydra-facials) up to 18 months for structural dermal fillers. Dr. Hassan will provide a personalized timeline during your consultation.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Is there any downtime after the procedure?</h3>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Most of our non-surgical procedures allow you to return to work immediately. Mild swelling or redness may occur but usually subsides within 24 to 48 hours.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Are the treatments painful?</h3>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>We prioritize your comfort. We use high-quality numbing creams and advanced techniques to ensure the experience is as painless and comfortable as possible.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>How do I know which treatment is right for me?</h3>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>We recommend starting with our "Virtual Skin Analysis" or a 1-on-1 clinical consultation where we assess your skin type and facial anatomy to create a bespoke plan.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    document.querySelectorAll('.faq-item').forEach(item => {
+    item.addEventListener('click', () => {
+        const isActive = item.classList.contains('active');
+
+        // Pehle baaki sab band karo (Optional, for accordion effect)
+        document.querySelectorAll('.faq-item').forEach(otherItem => {
+            otherItem.classList.remove('active');
+        });
+
+        // Current wale ko toggle karo
+        if (!isActive) {
+            item.classList.add('active');
+        }
+    });
+});
+</script>
+
+<!--ctaaaaaaaaaaaaaaaaaaaaa-->
+<section class="final-cta-section">
+    <div class="cta-bg-overlay"></div>
+    <div class="container-center relative-z">
+        <div class="cta-content">
+            <span class="script-tag-white">Your Journey Starts Here</span>
+            <h2 class="cta-main-title">Elevate Your <br> <span class="italic-gold">Natural Beauty</span></h2>
+            <p class="cta-sub">Experience the gold standard of aesthetic care with Dr. Hassan Mehmood.</p>
+            
+            <div class="cta-button-group">
+                <a href="https://wa.me/yournumber" class="btn-primary-gold">Book Appointment</a>
+                <a href="tel:+920000000" class="btn-outline-white">Consult an Expert</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--footerrrrrrrrrrrrrrrrrrrrrrrrrrrrr-->
+
+<footer class="pro-max-footer">
+    <div class="footer-video-bg">
+        <video autoplay muted loop playsinline>
+            <source src="./videos/footer.mp4" type="video/mp4">
+        </video>
+        <div class="footer-overlay"></div>
+    </div>
+
+    <div class="container-center relative-z footer-content">
+        <div class="footer-grid">
+            <div class="footer-col brand-col">
+                <h2 class="brand-name">HM <span class="aesthetic-word">Aesthetic</span></h2>
+                <p class="footer-tagline">Redefining the standards of non-surgical excellence.</p>
+                <div class="social-links">
+                    <a href="#" class="social-icon">Instagram</a>
+                    <a href="#" class="social-icon">Facebook</a>
+                    <a href="#" class="social-icon">WhatsApp</a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <span class="footer-label">Location</span>
+                <p class="footer-info">Phase 5, DHA, <br>Lahore, Pakistan</p>
+            </div>
+
+            <div class="footer-col">
+                <span class="footer-label">Contact</span>
+                <p class="footer-info">info@hmaesthetic.com <br>+92 300 1234567</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 HM AESTHETIC. ALL RIGHTS RESERVED.</p>
+            <p class="credit">DESIGNED BY <a href="https://codecrafte-org.github.io/visit/" target="_blank" class="designer-link">CODE CRAFTE</a></p>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

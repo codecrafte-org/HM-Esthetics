@@ -1,0 +1,75 @@
+.doctor-reels-section {
+    padding: 120px 0;
+    background: #050505;
+    overflow: hidden;
+}
+
+/* Centered Header Fix */
+.elite-header-center { text-align: center; margin-bottom: 100px; }
+.dr-profile { margin-top: 20px; }
+.dr-profile h3 { 
+    font-family: var(--font-heading); font-size: 1.2rem; 
+    letter-spacing: 5px; color: var(--primary); 
+}
+.dr-profile p { font-size: 0.7rem; opacity: 0.6; text-transform: uppercase; letter-spacing: 2px; margin-top: 5px; }
+
+/* Reels Wrapper */
+.reels-wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    max-width: 1400px;
+    margin: 0 auto;
+    align-items: start;
+}
+
+.reel-box {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 9/16; /* TikTok/Insta Size */
+    border-radius: 15px;
+    overflow: hidden;
+    background: #111;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+}
+
+.reel-box video {
+    width: 100%; height: 100%; object-fit: cover;
+    filter: grayscale(40%) brightness(0.8);
+    transition: 0.5s;
+}
+
+.reel-box:hover {
+    transform: scale(1.05) translateY(-20px) !important;
+    z-index: 50;
+}
+
+.reel-box:hover video { filter: grayscale(0%) brightness(1); }
+
+/* Floating Tag */
+.reel-tag {
+    position: absolute; bottom: 20px; left: 20px;
+    font-size: 0.6rem; letter-spacing: 2px; text-transform: uppercase;
+    background: rgba(212, 180, 153, 0.8); color: black;
+    padding: 4px 12px; border-radius: 20px; font-weight: 700;
+}
+
+/* Desktop Parallax (Staggered Movement) */
+.v-slow { transform: translateY(40px); }
+.v-fast { transform: translateY(-60px); }
+.v-mid { transform: translateY(20px); }
+.v-slow-2 { transform: translateY(-30px); }
+
+/* --- MOBILE RESPONSIVE (2/2 Grid) --- */
+@media (max-width: 991px) {
+    .reels-wrapper {
+        grid-template-columns: repeat(2, 1fr); /* 2/2 Grid */
+        gap: 15px;
+        padding: 0 15px;
+    }
+    .v-slow, .v-fast, .v-mid, .v-slow-2 { transform: none !important; }
+    
+    .reel-box { border-radius: 10px; }
+    .dr-profile h3 { font-size: 1rem; }
+}
