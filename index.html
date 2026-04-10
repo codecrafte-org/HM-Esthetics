@@ -24,12 +24,66 @@
     <div class="nav-container">
         <div class="nav-left desktop-only">
             <a href="#services" class="nav-link">Treatments</a>
-            <a href="#gallery" class="nav-link">Gallery</a>
+            <a href="./Components/Gallary.html" class="nav-link">Gallery</a>
         </div>
+ <div class="nav-logo">
+    <img src="../images/logo.svg" alt="HM Aesthetic Logo" class="main-logo">
+ </div>
+<style>
+    /* --- Logo & Brand Container --- */
+.nav-logo {
+    display: flex;
+    align-items: center; /* Logo aur Text ko vertical center karega */
+    gap: 12px;           /* Logo aur Text ke darmiyan space */
+    cursor: pointer;
+}
 
-        <div class="nav-logo">
-            <h1 class="brand-name">HM <span class="aesthetic-word">Aesthetic</span></h1>
-        </div>
+/* --- The Image Logo Styling --- */
+.main-logo {
+    height: 50px;        /* Desktop par perfect size */
+    width: auto;         /* Aspect ratio kharab nahi hogi */
+    display: block;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.nav-logo:hover .main-logo {
+    transform: scale(1.05); /* Halka sa hover effect */
+}
+
+/* --- Brand Text Styling --- */
+.brand-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.5rem;   /* Balanced size */
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 0;           /* Extra margins remove */
+    line-height: 1;
+}
+
+.aesthetic-word {
+    color: #d4b499;      /* Gold Accent */
+    font-weight: 300;
+}
+
+/* --- MOBILE RESPONSIVE FIX --- */
+@media (max-width: 768px) {
+    .nav-logo {
+        gap: 8px;        /* Mobile par space kam */
+    }
+
+    .main-logo {
+        height: 35px;    /* Mobile par logo chota ho jayega */
+    }
+
+    .brand-name {
+        font-size: 1.1rem; /* Mobile par text chota */
+        letter-spacing: 1px;
+    }
+}
+</style>
+
 
         <div class="nav-right">
             <div class="desktop-only">
@@ -50,7 +104,7 @@
         <nav class="sidebar-nav">
             <a href="#home">Home</a>
             <a href="#services">Services</a>
-            <a href="#gallery">Gallery</a>
+            <a href="./Components/Gallary.html">Gallery</a>
             <a href="#contact">Contact</a>
         </nav>
     </aside>

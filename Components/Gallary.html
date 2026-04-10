@@ -1,0 +1,568 @@
+
+<link rel="stylesheet" href="../style/footer.css">
+<link rel="stylesheet" href="../style/hero.css">
+<style>
+    /* --- Gallery Hero V2 --- */
+.gallery-hero-v2 {
+    height: 100vh;
+    width: 100%;
+    background: #000;
+    overflow: hidden;
+}
+
+.hero-split-wrapper {
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+/* --- Left Video Side --- */
+.split-left {
+    position: relative;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%); /* Slanted Edge for style */
+}
+
+.hero-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.5);
+    transition: 1s ease;
+}
+
+.video-overlay-text {
+    position: absolute;
+    bottom: 50px;
+    right: -20px;
+    font-size: 10vw;
+    font-weight: 900;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255,255,255,0.2);
+    transform: rotate(-90deg);
+    font-family: 'Syne', sans-serif;
+    pointer-events: none;
+}
+
+/* --- Right Content Side --- */
+.split-right {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    padding-left: 50px;
+    background: #000;
+}
+
+.content-box {
+    max-width: 500px;
+}
+
+.gallery-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(3rem, 7vw, 6rem);
+    line-height: 0.85;
+    color: #fff;
+    margin: 20px 0;
+}
+
+.outline-gold {
+    color: transparent;
+    -webkit-text-stroke: 1px #d4b499;
+}
+
+.gallery-desc {
+    color: rgba(255,255,255,0.6);
+    font-size: 1.1rem;
+    font-weight: 200;
+    margin-bottom: 40px;
+}
+
+/* Explore Hint Animation */
+.explore-hint {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.explore-hint .line {
+    width: 50px;
+    height: 2px;
+    background: #d4b499;
+    animation: line-grow 2s infinite;
+}
+
+.explore-hint span {
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 0.7rem;
+    color: #d4b499;
+}
+
+@keyframes line-grow {
+    0%, 100% { width: 50px; }
+    50% { width: 100px; }
+}
+
+/* --- MOBILE RESPONSIVE --- */
+@media (max-width: 991px) {
+    .hero-split-wrapper {
+        flex-direction: column;
+    }
+    .split-left, .split-right {
+        width: 100%;
+        height: 50vh;
+    }
+    .split-left {
+        clip-path: none;
+    }
+    .split-right {
+        padding: 40px;
+        justify-content: center;
+        text-align: center;
+    }
+    .explore-hint {
+        justify-content: center;
+    }
+    .video-overlay-text {
+        font-size: 15vw;
+        bottom: 20px;
+        right: 10px;
+        transform: none;
+    }
+}
+</style>
+<!--gallary-->
+<style>
+    /* Container settings */
+.gallery-wrapper {
+    background: #000;
+}
+
+.gallery-scroll-container {
+    height: 400vh; /* Scroll ki lambai - Jitna zyada, utna slow scroll */
+    position: relative;
+}
+
+/* Background Huge Text */
+.huge-bg-text {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20vw;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.03);
+    -webkit-text-stroke: 1px rgba(212, 180, 153, 0.1);
+    z-index: 1;
+    white-space: nowrap;
+    pointer-events: none;
+    text-transform: uppercase;
+    font-family: 'Syne', sans-serif;
+}
+
+/* Sticky window jo screen pe fix rahegi */
+.sticky-window {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden; /* Bahar wali cheezain chupa dega */
+    display: flex;
+    align-items: center;
+    z-index: 2;
+}
+
+/* Track jo move karega left to right */
+.horizontal-track {
+    display: flex;
+    padding: 0 10vw;
+    gap: 40px;
+    will-change: transform;
+}
+
+/* Card Styling */
+.gallery-card-item {
+    width: 380px; /* Perfect size na bara na chota */
+    height: 430px;
+    flex-shrink: 0;
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    overflow: hidden;
+    background: #111;
+    transition: transform 0.4s ease;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.card-inner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(30%);
+    transition: 0.6s ease;
+}
+
+.card-inner:hover img {
+    filter: grayscale(0%);
+    transform: scale(1.1);
+}
+
+.card-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 30px;
+    background: linear-gradient(to top, #000, transparent);
+}
+
+.card-info h3 {
+    color: #fff;
+    font-family: 'Syne';
+    margin-bottom: 10px;
+    font-size: 1.4rem;
+}
+
+.card-info a {
+    color: #d4b499;
+    text-decoration: none;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* --- MOBILE RESPONSIVE (2x2 GRID) --- */
+@media (max-width: 991px) {
+    .gallery-scroll-container { height: auto !important; }
+    .sticky-window { position: relative; height: auto; padding: 60px 20px; }
+    
+    .horizontal-track {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        width: 100%;
+        padding: 0;
+        gap: 15px;
+    }
+    
+    .gallery-card-item {
+        width: 100%;
+        height: 280px;
+    }
+    
+    .huge-bg-text { display: none; }
+}
+</style>
+  <header class="navbar" id="main-nav">
+    <div class="nav-container">
+        <div class="nav-left desktop-only">
+            <a href="./service.html" class="nav-link">Treatments</a>
+            <a href="../index.html" class="nav-link">Home</a>
+        </div>
+
+        <div class="nav-logo">
+    <img src="../images/logo.svg" alt="HM Aesthetic Logo" class="main-logo">
+ </div>
+<style>
+    /* --- Logo & Brand Container --- */
+.nav-logo {
+    display: flex;
+    align-items: center; /* Logo aur Text ko vertical center karega */
+    gap: 12px;           /* Logo aur Text ke darmiyan space */
+    cursor: pointer;
+}
+
+/* --- The Image Logo Styling --- */
+.main-logo {
+    height: 50px;        /* Desktop par perfect size */
+    width: auto;         /* Aspect ratio kharab nahi hogi */
+    display: block;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.nav-logo:hover .main-logo {
+    transform: scale(1.05); /* Halka sa hover effect */
+}
+
+/* --- Brand Text Styling --- */
+.brand-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.5rem;   /* Balanced size */
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 0;           /* Extra margins remove */
+    line-height: 1;
+}
+
+.aesthetic-word {
+    color: #d4b499;      /* Gold Accent */
+    font-weight: 300;
+}
+
+/* --- MOBILE RESPONSIVE FIX --- */
+@media (max-width: 768px) {
+    .nav-logo {
+        gap: 8px;        /* Mobile par space kam */
+    }
+
+    .main-logo {
+        height: 35px;    /* Mobile par logo chota ho jayega */
+    }
+
+    .brand-name {
+        font-size: 1.1rem; /* Mobile par text chota */
+        letter-spacing: 1px;
+    }
+}
+</style>
+
+        <div class="nav-right">
+            <div class="desktop-only">
+                <a href="./Faq.html" class="nav-link" style="margin-right: 20px;">FAQs</a>
+                <button class="book-btn">Book Now</button>
+            </div>
+            
+            <div class="menu-toggle" id="menu-btn">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <div class="sidebar-overlay" id="overlay"></div>
+    <aside class="sidebar" id="sidebar">
+        <div class="close-sidebar" id="close-btn">&times;</div>
+        <nav class="sidebar-nav">
+            <a href="#home">Home</a>
+            <a href="#services">Treatments</a>
+            <a href="./Components/Gallary.html">Gallary</a>
+            <a href="#contact">FAQ</a>
+        </nav>
+    </aside>
+
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+const sidebar = document.getElementById('sidebar');
+const closeBtn = document.getElementById('close-btn');
+const nav = document.getElementById('main-nav');
+
+// Sidebar Toggle
+menuBtn.addEventListener('click', () => {
+    sidebar.classList.add('active');
+});
+
+closeBtn.addEventListener('click', () => {
+    sidebar.classList.remove('active');
+});
+
+// Sticky Nav Scroll
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+        nav.classList.add('sticky');
+    } else {
+        nav.classList.remove('sticky');
+    }
+});
+
+// GSAP Reveal
+gsap.from(".hero-content > *", {
+    y: 30, opacity: 0, duration: 1, stagger: 0.2, ease: "power3.out"
+});
+    </script>
+
+<section class="gallery-hero-v2">
+    <div class="hero-split-wrapper">
+        <div class="split-left">
+            <video autoplay muted loop playsinline class="hero-video">
+                <source src="../videos/skin.webm" type="video/mp4">
+            </video>
+         </div>
+
+        <div class="split-right">
+            <div class="content-box">
+                <span class="script-tag">Precision in Every Detail</span>
+                <h1 class="gallery-title">The <br> <span class="outline-gold">Art</span> of <br> Glow</h1>
+                <p class="gallery-desc">Experience a visual journey through our most successful skin transformations and aesthetic surgeries.</p>
+                <div class="explore-hint">
+                    <div class="line"></div>
+                    <span>Explore Our Portfolio</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--allaryyyyyyyyyyyyyyyy-->
+
+<section class="gallery-wrapper">
+    <div class="gallery-scroll-container">
+        
+        <div class="huge-bg-text">HM GALLERY</div>
+
+        <div class="sticky-window">
+            <div class="horizontal-track">
+                
+                <div class="gallery-card-item">
+                    <div class="card-inner">
+                        <img src="../images/Gallary/h-s.png" alt="">
+                        <div class="card-info">
+                            <h3>Lip Filler</h3>
+                            <a href="#">See Case Study</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-card-item">
+                    <div class="card-inner">
+                        <img src="../images/Gallary/2ff.png" alt="">
+                        <div class="card-info">
+                            <h3>Hydrafacial</h3>
+                            <a href="#">See Case Study</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-card-item">
+                    <div class="card-inner">
+                        <img src="../images/Gallary/dice.png" alt="">
+                        <div class="card-info">
+                            <h3>Laser Pro</h3>
+                            <a href="#">See Case Study</a>
+                        </div>
+                    </div>
+                </div>
+  <div class="gallery-card-item">
+                    <div class="card-inner">
+                        <img src="../images/Gallary/group.png" alt="">
+                        <div class="card-info">
+                            <h3>Laser Pro</h3>
+                            <a href="#">See Case Study</a>
+                        </div>
+                    </div>
+                </div>
+  <div class="gallery-card-item">
+                    <div class="card-inner">
+                        <img src="../images/Gallary/h-s2.png" alt="">
+                        <div class="card-info">
+                            <h3>Laser Pro</h3>
+                            <a href="#">See Case Study</a>
+                        </div>
+                    </div>
+                </div>
+  <div class="gallery-card-item">
+                    <div class="card-inner">
+                        <img src="../images/Gallary/2ff.png" alt="">
+                        <div class="card-info">
+                            <h3>Laser Pro</h3>
+                            <a href="#">See Case Study</a>
+                        </div>
+                    </div>
+                </div>
+  <div class="gallery-card-item" style="width: 380px; height: 430px; flex-shrink: 0; position: relative;">
+    <div class="card-inner" style="position: relative; width: 100%; height: 100%; border-radius: 15px; overflow: hidden; background: #000; border: 1px solid rgba(255,255,255,0.1);">
+        
+        <video 
+            autoplay 
+            muted 
+            loop 
+            playsinline 
+            style="width: 100%; height: 100%; object-fit: cover; filter: brightness(0.7); transition: 0.6s ease;"
+            onmouseover="this.style.filter='brightness(1)'" 
+            onmouseout="this.style.filter='brightness(0.7)'">
+            <source src="../videos/h4.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+
+        <div class="card-info" style="position: absolute; bottom: 0; left: 0; width: 100%; padding: 30px; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); pointer-events: none;">
+            <h3 style="color: #fff; font-family: 'Syne', sans-serif; margin-bottom: 10px; font-size: 1.4rem; text-transform: uppercase;">Treatment Promo</h3>
+            <a href="#" style="color: #d4b499; text-decoration: none; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; pointer-events: auto;">Watch Full Video</a>
+        </div>
+
+        <div style="position: absolute; top: 15px; right: 15px; background: rgba(0,0,0,0.5); padding: 5px 10px; border-radius: 5px; color: #fff; font-size: 10px; letter-spacing: 1px;">
+            VIDEO
+        </div>
+    </div>
+</div><style>
+    @media (max-width: 991px) {
+        /* Mobile grid support for the video card */
+        .gallery-card-item {
+            width: 100% !important;
+            height: 280px !important;
+        }
+    }
+</style>
+
+                </div>
+        </div>
+    </div>
+</section>
+<script>
+    window.addEventListener('scroll', () => {
+    const scrollContainer = document.querySelector('.gallery-scroll-container');
+    const track = document.querySelector('.horizontal-track');
+    
+    if (!scrollContainer || !track) return;
+
+    if (window.innerWidth > 991) {
+        const offsetTop = scrollContainer.offsetTop;
+        const containerHeight = scrollContainer.offsetHeight;
+        const windowHeight = window.innerHeight;
+        const scrollProgress = (window.pageYOffset - offsetTop) / (containerHeight - windowHeight);
+
+        // Calculate the maximum width the track can move
+        const maxMove = track.scrollWidth - window.innerWidth + (window.innerWidth * 0.2); // Adding padding offset
+
+        if (scrollProgress >= 0 && scrollProgress <= 1) {
+            track.style.transform = `translateX(-${scrollProgress * maxMove}px)`;
+        }
+    }
+});
+</script>
+<!--footerrrrrrrrrrr-->
+
+<footer class="pro-max-footer">
+    <div class="footer-video-bg">
+        <video autoplay muted loop playsinline>
+            <source src="../videos/footer.webm" type="video/mp4">
+        </video>
+        <div class="footer-overlay"></div>
+    </div>
+
+    <div class="container-center relative-z footer-content">
+        <div class="footer-grid">
+            <div class="footer-col brand-col">
+                <h2 class="brand-name">HM <span class="aesthetic-word">Aesthetic</span></h2>
+                <p class="footer-tagline">Redefining the standards of non-surgical excellence.</p>
+                <div class="social-links">
+                    <a href="#" class="social-icon">Instagram</a>
+                    <a href="#" class="social-icon">Facebook</a>
+                    <a href="#" class="social-icon">WhatsApp</a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <span class="footer-label">Location</span>
+                <p class="footer-info">Phase 5, DHA, <br>Lahore, Pakistan</p>
+            </div>
+
+            <div class="footer-col">
+                <span class="footer-label">Contact</span>
+                <p class="footer-info">info@hmaesthetic.com <br>+92 328 6658507</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 HM AESTHETIC. ALL RIGHTS RESERVED.</p>
+            <p class="credit">DESIGNED BY <a href="https://codecrafte.vercel.app/" target="_blank" class="designer-link">CODE CRAFTE</a></p>
+        </div>
+    </div>
+</footer>
