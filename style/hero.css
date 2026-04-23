@@ -176,7 +176,7 @@ body { background: var(--dark); color: var(--white); font-family: var(--font-bod
 
 .hero-content { position: relative; z-index: 5; padding: 0 20px; }
 .hero-title { font-family: var(--font-heading); font-size: clamp(2.5rem, 8vw, 6rem); line-height: 1; }
-.stylish-accent { font-family: var(--font-fancy); font-style: italic; color: var(--primary); }
+.stylish-accent { font-family: var(--font-fancy); font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; color: var(--primary); }
 .hero-desc { margin: 20px auto; max-width: 400px; font-weight: 200; opacity: 0.8; font-size: 0.9rem; }
 
 /* Mobile Specific Fixes */
