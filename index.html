@@ -30,7 +30,7 @@
             <a href="./Components/Gallary.html" class="nav-link">Gallery</a>
         </div>
  <div class="nav-logo">
-    <img loading="lazy" src="../images/logo.svg" loading="lazy" alt="HM Aesthetic Logo" class="main-logo">
+    <img loading="lazy" src="../images/logo.svg"  width="150" height="50" alt="HM Aesthetic Logo" class="main-logo">
  </div>
 <style>
     /* --- Logo & Brand Container --- */
@@ -112,7 +112,7 @@
             <a href="./Components/product.html">Product</a>
         </nav>
     </aside>
- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
      <script>
         const menuBtn = document.getElementById('menu-btn');
 const sidebar = document.getElementById('sidebar');
@@ -145,8 +145,8 @@ gsap.from(".hero-content > *", {
     <main>
         <section class="hero-video-section">
             <div class="video-overlay"></div>
-            <video autoplay muted loop playsinline class="bg-video">
-                <source src="./videos/hero.webm" type="video/mp4">
+            <video poster="./images/hero-poster.webp" autoplay muted loop playsinline class="bg-video">
+                <source src="./videos/hero.webm"  type="video/mp4">
             </video>
 
             <div class="hero-content">
@@ -294,19 +294,19 @@ gsap.from(".stat-num", {
 
         <div class="reels-wrapper">
             <div class="reel-box v-slow">
-                <video src="./videos/h4.webm" loop muted playsinline autoplay></video>
+                <video src="./videos/h4.webm" loop muted playsinline autoplay class="lazy-video"></video>
                 <div class="reel-tag">Procedures</div>
             </div>
             <div class="reel-box v-fast">
-                <video src="./videos/h2.webm" loop muted playsinline autoplay></video>
+                <video src="./videos/h2.webm" loop muted playsinline autoplay class="lazy-video"></video>
                 <div class="reel-tag">Consultation</div>
             </div>
             <div class="reel-box v-mid">
-                <video src="./videos/h3.webm" loop muted playsinline autoplay></video>
+                <video src="./videos/h3.webm" loop muted playsinline autoplay class="lazy-video"></video>
                 <div class="reel-tag">Results</div>
             </div>
             <div class="reel-box v-slow-2">
-                <video src="./videos/h5.webm" loop muted playsinline autoplay></video>
+                <video src="./videos/h5.webm" loop muted playsinline autoplay class="lazy-video"></video>
                 <div class="reel-tag">Care</div>
             </div>
         </div>
@@ -423,10 +423,10 @@ marquees.forEach(m => {
 
         <div class="t-grid">
             <div class="comparison-slider" id="slider-container">
-                <div class="img-before" style="background-image: url('./images/before.webp');">
+                <div class="img-before" aria-label="Before and After Slider" style="background-image: url('./images/before.webp');">
                     <span class="label-text left">Before</span>
                 </div>
-                <div class="img-after" id="slider-after" style="background-image: url('./images/after.webp');">
+                <div class="img-after" aria-label="Before and After Slider" id="slider-after" style="background-image: url('./images/after.webp');">
                     <span class="label-text right">After</span>
                 </div>
                 
@@ -609,7 +609,7 @@ slider.addEventListener('input', (e) => {
 <!--whatappp-->
 <a href="https://wa.me/923286658507?text=Hello!%20I%20want%20to%20book%20an%20appointment%20at%20HM%20Aesthetic." 
    class="whatsapp-float" 
-   target="_blank">
+   target="_blank" aria-label="Contact us on WhatsApp">
     <div class="whatsapp-content">
         <span class="wa-text">Chat with us</span>
         <svg class="wa-icon" viewBox="0 0 448 512">
@@ -727,5 +727,34 @@ slider.addEventListener('input', (e) => {
         </div>
     </div>
 </footer>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+  var lazyVideos = [].slice.call(document.querySelectorAll("video.lazy-video"));
+
+  if ("IntersectionObserver" in window) {
+    var lazyVideoObserver = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(function(video) {
+        if (video.isIntersecting) {
+          for (var source in video.target.children) {
+            var videoSource = video.target.children[source];
+            if (typeof videoSource.tagName === "string" && videoSource.tagName === "SOURCE") {
+              videoSource.src = videoSource.dataset.src;
+            }
+          }
+          video.target.load();
+          video.target.classList.remove("lazy-video");
+          lazyVideoObserver.unobserve(video.target);
+        }
+      });
+    });
+
+    lazyVideos.forEach(function(lazyVideo) {
+      lazyVideoObserver.observe(lazyVideo);
+    });
+  }
+});
+</script>
 </body>
 </html>
