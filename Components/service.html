@@ -1,216 +1,780 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Services | HM Aesthetic</title>
-    
-    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-    <link rel="icon" type="image/png" href="../images/logo.svg">
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Cormorant+Garamond:italic,wght@300;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style/footer.css">
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" href="../images/logo.svg" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Cormorant+Garamond:italic,wght@300;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../style/hero.css" />
     <style>
-        /* --- 1. GLOBAL & VARIABLES --- */
+      /* --- 1. GLOBAL & VARIABLES --- */
+      :root {
+        --primary: #d4b499;
+        --bg: #000;
+        --text: #fff;
+        --transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: "Syne", sans-serif;
+        overflow-x: hidden;
+      }
+
+     
+      /* --- 3. HERO SECTION --- */
+      .service-hero {
+        position: relative;
+        height: 80vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        overflow: hidden;
+        padding-top: 90px;
+      }
+      .hero-bg-glow {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(
+          circle,
+          rgba(212, 180, 153, 0.1) 0%,
+          transparent 70%
+        );
+        filter: blur(80px);
+      }
+
+      .hero-content {
+        z-index: 10;
+      }
+      .script-tag {
+        font-family: "Cormorant Garamond", serif;
+        font-style: italic;
+        color: var(--primary);
+        font-size: 1.5rem;
+        display: block;
+        margin-bottom: 10px;
+      }
+      .hero-title {
+        font-size: clamp(3rem, 10vw, 6rem);
+        line-height: 0.9;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+      }
+      .outline-text {
+        color: transparent;
+        -webkit-text-stroke: 1px #fff;
+      }
+
+      /* --- 4. MARQUEE SERVICE SECTION --- */
+      .services-marquee-section {
+        padding: 100px 0;
+        background: #000;
+        overflow: hidden;
+      }
+      .marquee-wrapper {
+        display: flex;
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+        padding: 40px 0;
+      }
+      .marquee-content {
+        display: flex;
+        width: max-content;
+        gap: 30px;
+        animation: scroll 40s linear infinite;
+      }
+      .marquee-wrapper:hover .marquee-content {
+        animation-play-state: paused;
+      }
+
+      @keyframes scroll {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+
+      .s-card {
+        width: 350px;
+        height: 480px;
+        position: relative;
+        border-radius: 15px;
+        overflow: hidden;
+        flex-shrink: 0;
+        transition: var(--transition);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      .s-card:hover {
+        transform: translateY(-15px) scale(1.03);
+        box-shadow: 0 20px 40px rgba(212, 180, 153, 0.2);
+      }
+      .s-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: brightness(0.6);
+        transition: 0.5s;
+      }
+      .s-card:hover img {
+        filter: brightness(1);
+      }
+
+      .s-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to top,
+          rgba(0, 0, 0, 0.9),
+          transparent 70%
+        );
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 30px;
+      }
+      .s-overlay h3 {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      .s-btn {
+        border: 1px solid var(--primary);
+        color: var(--primary);
+        width: fit-content;
+        padding: 10px 20px;
+        text-decoration: none;
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        transition: 0.3s;
+      }
+      .s-btn:hover {
+        background: var(--primary);
+        color: #000;
+      }
+
+      /* --- 5. MOBILE FIXES --- */
+      @media (max-width: 991px) {
+        .nav-links {
+          display: none;
+        }
+        .hero-title {
+          font-size: 3.5rem;
+        }
+        .marquee-content {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          width: 100%;
+          animation: none;
+          gap: 15px;
+          padding: 20px;
+        }
+        .s-card {
+          width: 100%;
+          height: 280px;
+        }
+        .s-card:nth-child(n + 11) {
+          display: none;
+        } /* Hide duplicates on mobile */
+        .marquee-wrapper {
+          overflow: visible;
+        }
+        .outline-text{
+            font-size: xxx-large;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!--navvv-->
+<style>
+        /* --- 1. VARIABLES & RESET --- */
         :root {
             --primary: #d4b499;
-            --bg: #000;
-            --text: #fff;
-            --transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+            --white: #ffffff;
+            --dark: #0a0a0a;
+            --font-heading: 'Syne', sans-serif;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background: var(--bg); color: var(--text); font-family: 'Syne', sans-serif; overflow-x: hidden; }
+        body { background: #000; overflow-x: hidden; font-family: var(--font-heading); }
 
-        /* --- 2. NAVIGATION --- */
+        /* --- 2. NAVBAR --- */
         .navbar {
-            position: fixed; top: 0; width: 100%; height: 90px;
-            background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(15px);
-            z-index: 1000; display: flex; align-items: center;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            position: fixed; top: 25px; left: 50%; transform: translateX(-50%);
+    width: 90%; z-index: 1000; padding: 5px 20px;
+    background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px);
+    border-radius: 50px; border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.5s cubic-bezier(0.7, 0, 0.3, 1);
         }
-        .nav-container { width: 90%; max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-        .nav-logo { display: flex; align-items: center; gap: 12px; }
-        .main-logo { height: 45px; width: auto; }
-        .brand-name { font-size: 1.4rem; text-transform: uppercase; letter-spacing: 2px; }
-        .aesthetic-word { color: var(--primary); font-weight: 300; }
-        .nav-links a { color: #fff; text-decoration: none; margin-left: 30px; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; opacity: 0.7; transition: 0.3s; }
-        .nav-links a:hover { opacity: 1; color: var(--primary); }
 
-        /* --- 3. HERO SECTION --- */
-        .service-hero {
-            position: relative; height: 80vh; display: flex; align-items: center;
-            justify-content: center; text-align: center; overflow: hidden; padding-top: 90px;
+        .navbar.sticky { 
+            top: 0; width: 100%; border-radius: 0; 
+            background: rgba(10, 10, 10, 0.95); 
+            padding: 15px 5%;
         }
-        .hero-bg-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 600px; height: 600px; background: radial-gradient(circle, rgba(212, 180, 153, 0.1) 0%, transparent 70%); filter: blur(80px); }
+
+        .nav-container { 
+            display: flex; justify-content: space-between; 
+            align-items: center; width: 100%; 
+        }
+
+        .desktop-only { display: flex; gap: 30px; align-items: center; }
+
+        .nav-link {
+            text-decoration: none; color: var(--white);
+            font-size: 0.7rem; font-weight: 300;
+            text-transform: uppercase; letter-spacing: 3px;
+            opacity: 0.6; position: relative;
+            transition: all 0.4s ease;
+        }
+
+        .nav-link:hover { opacity: 1; color: var(--primary); letter-spacing: 4px; }
+
+        .nav-logo { display: flex; align-items: center; gap: 12px; cursor: pointer; }
+        .main-logo { height: 40px; width: auto;   }
         
-        .hero-content { z-index: 10; }
-        .script-tag { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--primary); font-size: 1.5rem; display: block; margin-bottom: 10px; }
-        .hero-title { font-size: clamp(3rem, 10vw, 6rem); line-height: 0.9; text-transform: uppercase; margin-bottom: 20px; }
-        .outline-text { color: transparent; -webkit-text-stroke: 1px #fff; }
+        .brand-name { 
+            color: var(--white); font-size: 1.2rem; 
+            letter-spacing: 4px; text-transform: uppercase; 
+        }
 
-        /* --- 4. MARQUEE SERVICE SECTION --- */
-        .services-marquee-section { padding: 100px 0; background: #000; overflow: hidden; }
-        .marquee-wrapper { display: flex; width: 100%; overflow: hidden; position: relative; padding: 40px 0; }
-        .marquee-content { display: flex; width: max-content; gap: 30px; animation: scroll 40s linear infinite; }
-        .marquee-wrapper:hover .marquee-content { animation-play-state: paused; }
+        .book-btn {
+            background: var(--white); color: var(--dark); border: none;
+            padding: 10px 22px; border-radius: 30px; font-size: 0.7rem;
+            font-weight: 700; text-transform: uppercase; cursor: pointer;
+            transition: 0.3s;
+        }
 
-        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        .book-btn:hover { background: var(--primary); color: #000; }
 
-        .s-card { width: 350px; height: 480px; position: relative; border-radius: 15px; overflow: hidden; flex-shrink: 0; transition: var(--transition); border: 1px solid rgba(255,255,255,0.05); }
-        .s-card:hover { transform: translateY(-15px) scale(1.03); box-shadow: 0 20px 40px rgba(212, 180, 153, 0.2); }
-        .s-card img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.6); transition: 0.5s; }
-        .s-card:hover img { filter: brightness(1); }
+        /* --- 3. HAMBURGER & SIDEBAR --- */
+        .menu-toggle {
+            display: flex; flex-direction: column; gap: 6px; 
+            cursor: pointer; z-index: 2001;
+        }
+        .menu-toggle span { width: 25px; height: 2px; background: white; transition: 0.3s; }
 
-        .s-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent 70%); display: flex; flex-direction: column; justify-content: flex-end; padding: 30px; }
-        .s-overlay h3 { font-size: 1.5rem; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
-        .s-btn { border: 1px solid var(--primary); color: var(--primary); width: fit-content; padding: 10px 20px; text-decoration: none; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; }
-        .s-btn:hover { background: var(--primary); color: #000; }
+        .sidebar {
+            position: fixed; top: 0; right: -100%; width: 320px; height: 100%;
+            background: #111; z-index: 3000; padding: 100px 40px;
+            transition: 0.6s cubic-bezier(0.7, 0, 0.3, 1);
+            border-left: 1px solid rgba(255,255,255,0.1);
+        }
+        .sidebar.active { right: 0; }
 
-        /* --- 5. MOBILE FIXES --- */
-        @media (max-width: 991px) {
-            .nav-links { display: none; }
-            .hero-title { font-size: 3.5rem; }
-            .marquee-content { 
-                display: grid; grid-template-columns: 1fr 1fr; 
-                width: 100%; animation: none; gap: 15px; padding: 20px;
-            }
-            .s-card { width: 100%; height: 280px; }
-            .s-card:nth-child(n+11) { display: none; } /* Hide duplicates on mobile */
-            .marquee-wrapper { overflow: visible; }
+        .sidebar-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8); z-index: 2500;
+            display: none; opacity: 0; transition: 0.4s;
+        }
+        .sidebar-overlay.active { display: block; opacity: 1; }
+
+        .sidebar-nav { display: flex; flex-direction: column; gap: 30px; }
+        .sidebar-nav a { 
+            color: white; text-decoration: none; 
+            font-size: 1.5rem; text-transform: uppercase; letter-spacing: 2px;
+        }
+
+        .close-sidebar { 
+            position: absolute; top: 30px; right: 30px; 
+            font-size: 2.5rem; color: white; cursor: pointer; 
+        }
+
+
+        /* Mobile Fixes */
+        @media (max-width: 768px) {
+            .desktop-only { display: none; }
+            .navbar { top: 15px; }
         }
     </style>
-</head>
-<body>
-
-    <nav class="navbar">
+    <div class="sidebar-overlay" id="overlay"></div>
+    <header class="navbar" id="main-nav">
         <div class="nav-container">
-            <div class="nav-logo">
-                <img src="./images/logo.svg" alt="Logo" class="main-logo">
-                <h1 class="brand-name">HM <span class="aesthetic-word">Aesthetic</span></h1>
+            <div class="nav-left desktop-only">
+                <a href="../index.html" class="nav-link">Home</a>
+                <a href="./Gallary.html" class="nav-link">Gallery</a>
             </div>
-            <div class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="gallery.html">Gallery</a>
-                <a href="#">Contact</a>
+
+            <div class="nav-logo">
+                <img src="../images/logo.svg" alt="Logo" class="main-logo">
+             </div>
+
+            <div class="nav-right">
+                <div class="desktop-only">
+                    <a href="./product.html" class="nav-link" style="margin-right: 20px;">Product</a>
+                    <button class="book-btn">Book Now</button>
+                </div>
+                <div class="menu-toggle" id="menu-btn">
+                    <span></span><span></span><span></span>
+                </div>
             </div>
         </div>
-    </nav>
+    </header>
+    <aside class="sidebar" id="sidebar">
+        <div class="close-sidebar" id="close-btn">&times;</div>
+        <nav class="sidebar-nav">
+            <a href="../index.html">Home</a>
+            <a href="./Gallary.html">Gallery</a>
+            <a href="./product.html">Product</a>
+            <a href="./Ordernow.html">Order Now</a>
+        </nav>
+    </aside>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const sidebar = document.getElementById('sidebar');
+        const closeBtn = document.getElementById('close-btn');
+        const overlay = document.getElementById('overlay');
+        const nav = document.getElementById('main-nav');
+
+        // Toggle Sidebar
+        menuBtn.addEventListener('click', () => {
+            sidebar.classList.add('active');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        const hideSidebar = () => {
+            sidebar.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        };
+
+        closeBtn.addEventListener('click', hideSidebar);
+        overlay.addEventListener('click', hideSidebar);
+
+        // Sticky Navbar
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('sticky');
+            } else {
+                nav.classList.remove('sticky');
+            }
+        });
+
+        // GSAP Reveal
+        window.onload = () => {
+            gsap.from(".hero-content h1", {
+                y: 50, opacity: 0, duration: 1.2, ease: "power4.out"
+            });
+        };
+    </script>
+    <!--navvv enddd-->
+
+ 
+
+
 
     <section class="service-hero">
-        <div class="hero-bg-glow"></div>
-        <div class="hero-content">
-            <span class="script-tag">Our Expertise</span>
-            <h1 class="hero-title">Signature <br> <span class="outline-text">Treatments</span></h1>
-            <p style="max-width: 600px; margin: 0 auto; opacity: 0.6; font-weight: 200;">Discover our range of medical-grade aesthetic procedures tailored for your unique glow.</p>
-        </div>
+      <div class="hero-bg-glow"></div>
+      <div class="hero-content">
+        <span class="script-tag">Our Expertise</span>
+        <h1 class="hero-title">
+          Signature <br />
+          <span class="outline-text">Treatments</span>
+        </h1>
+        <p
+          style="
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.6;
+            font-weight: 200;
+          "
+        >
+          Discover our range of medical-grade aesthetic procedures tailored for
+          your unique glow.
+        </p>
+      </div>
     </section>
 
-    <section class="services-marquee-section">
-        <div class="marquee-wrapper">
-            <div class="marquee-content">
-                <div class="s-card"><img src="./images/Botox.png"><div class="s-overlay"><h3>Botox & Fillers</h3><a href="#" class="s-btn">See Pricing</a></div></div>
-                <div class="s-card"><img src="./images/Hydra-Glow.png"><div class="s-overlay"><h3>Hydra-Glow</h3><a href="#" class="s-btn">See More</a></div></div>
-                <div class="s-card"><img src="./images/laser.png"><div class="s-overlay"><h3>Laser Therapy</h3><a href="#" class="s-btn">See Pricing</a></div></div>
-                <div class="s-card"><img src="./images/iv.png"><div class="s-overlay"><h3>IV Nutrients</h3><a href="#" class="s-btn">See More</a></div></div>
-                <div class="s-card"><img src="./images/jaw.png"><div class="s-overlay"><h3>Jawline Sculpt</h3><a href="#" class="s-btn">See Pricing</a></div></div>
-                <div class="s-card"><img src="./images/chem.png"><div class="s-overlay"><h3>Chemical Peels</h3><a href="#" class="s-btn">See More</a></div></div>
-                <div class="s-card"><img src="./images/microo.png"><div class="s-overlay"><h3>Microneedling</h3><a href="#" class="s-btn">See Pricing</a></div></div>
-                <div class="s-card"><img src="./images/Prp.png"><div class="s-overlay"><h3>PRP</h3><a href="#" class="s-btn">See More</a></div></div>
-                <div class="s-card"><img src="./images/nano.png"><div class="s-overlay"><h3>Nano fat grafting</h3><a href="#" class="s-btn">See Pricing</a></div></div>
-                <div class="s-card"><img src="./images/tred.png"><div class="s-overlay"><h3>Threads</h3><a href="#" class="s-btn">See More</a></div></div>
+    
+<style>
+    /* Desktop and Global Styles */
+    .hm-services-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 25px;
+        max-width: 1300px;
+        margin: 0 auto;
+        padding: 80px 20px;
+    }
+    .hm-card {
+        position: relative;
+        height: 450px;
+        border-radius: 15px;
+        overflow: hidden;
+        background: #111;
+        border: 1px solid rgba(212, 180, 153, 0.2);
+        transition: transform 0.4s ease, border-color 0.4s ease;
+        cursor: pointer;
+    }
+    .hm-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.7;
+        transition: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    /* --- HOVER EFFECT --- */
+    .hm-card:hover img {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+    .hm-card:hover {
+        border-color: #d4b499;
+        box-shadow: 0 10px 30px rgba(212, 180, 153, 0.1);
+    }
+    .hm-overlay {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 30px 20px;
+        background: linear-gradient(to top, rgba(0,0,0,0.9) 10%, transparent 60%);
+    }
+    .hm-overlay h3 {
+        color: #fff;
+        font-family: 'Syne', sans-serif;
+        font-size: 1.4rem;
+        text-transform: uppercase;
+        margin-bottom: 15px;
+        transition: transform 0.4s ease;
+    }
+    .hm-card:hover h3 {
+        transform: translateY(-5px);
+        color: #d4b499;
+    }
+    .hm-btn {
+        padding: 10px 22px;
+        border: 1px solid #d4b499;
+        color: #d4b499;
+        text-decoration: none;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        border-radius: 4px;
+        width: fit-content;
+        transition: 0.3s;
+    }
+    .hm-btn:hover { background: #d4b499; color: #000; }
 
-                <div class="s-card"><img src="./images/Botox.png"><div class="s-overlay"><h3>Botox & Fillers</h3><a href="#" class="s-btn">See Pricing</a></div></div>
-                <div class="s-card"><img src="./images/Hydra-Glow.png"><div class="s-overlay"><h3>Hydra-Glow</h3><a href="#" class="s-btn">See More</a></div></div>
-                <div class="s-card"><img src="./images/laser.png"><div class="s-overlay"><h3>Laser Therapy</h3><a href="#" class="s-btn">See Pricing</a></div></div>
-                <div class="s-card"><img src="./images/iv.png"><div class="s-overlay"><h3>IV Nutrients</h3><a href="#" class="s-btn">See More</a></div></div>
-                <div class="s-card"><img src="./images/jaw.png"><div class="s-overlay"><h3>Jawline Sculpt</h3><a href="#" class="s-btn">See Pricing</a></div></div>
-                <div class="s-card"><img src="./images/chem.png"><div class="s-overlay"><h3>Chemical Peels</h3><a href="#" class="s-btn">See More</a></div></div>
-                <div class="s-card"><img src="./images/microo.png"><div class="s-overlay"><h3>Microneedling</h3><a href="#" class="s-btn">See Pricing</a></div></div>
-                <div class="s-card"><img src="./images/Prp.png"><div class="s-overlay"><h3>PRP</h3><a href="#" class="s-btn">See More</a></div></div>
-                <div class="s-card"><img src="./images/nano.png"><div class="s-overlay"><h3>Nano fat grafting</h3><a href="#" class="s-btn">See Pricing</a></div></div>
-                <div class="s-card"><img src="./images/tred.png"><div class="s-overlay"><h3>Threads</h3><a href="#" class="s-btn">See More</a></div></div>
+    /* --- MOBILE RESPONSIVE FIX (3 COLUMNS) --- */
+    @media (max-width: 991px) {
+        .hm-services-grid {
+            grid-template-columns: repeat(3, 1fr) !important;
+            gap: 8px !important;
+            padding: 40px 10px !important;
+        }
+        .hm-card {
+            height: 220px !important; /* Mobile height for 3-grid */
+            border-radius: 8px;
+        }
+        .hm-overlay { padding: 10px 5px !important; }
+        .hm-overlay h3 {
+            font-size: 0.6rem !important;
+            margin-bottom: 8px !important;
+        }
+        .hm-btn {
+            padding: 4px 6px !important;
+            font-size: 0.45rem !important;
+            border-radius: 2px;
+        }
+    }
+</style>
+
+<section style="background-color: #000; width: 100%; min-height: 100vh; display: block;">
+    <div class="hm-services-grid">
+
+        <div class="hm-card">
+            <img src="../images/Prp.webp">
+            <div class="hm-overlay">
+                <h3>PRP</h3>
+                <a href="./Service-components/prp.html" class="hm-btn">View Details</a>
             </div>
         </div>
-    </section>
-<!--whatappp-->
-<a href="https://wa.me/923286658507?text=Hello!%20I%20want%20to%20book%20an%20appointment%20at%20HM%20Aesthetic." 
-   class="whatsapp-float" 
-   target="_blank">
-    <div class="whatsapp-content">
+
+        <div class="hm-card">
+            <img src="../images/microo.webp">
+            <div class="hm-overlay">
+                <h3>Microneedling</h3>
+                <a href="./Service-components/Microneedling.html" class="hm-btn">View Details</a>
+            </div>
+        </div>
+
+        <div class="hm-card">
+            <img src="../images/Services/thread.png">
+            <div class="hm-overlay">
+                <h3>Threads</h3>
+                <a href=".//Service-components/Thread.html" class="hm-btn">View Details</a>
+            </div>
+        </div>
+
+        <div class="hm-card">
+            <img src="../images/Services/Electro.png">
+            <div class="hm-overlay">
+                <h3>Electrolysis</h3>
+                <a href="./Service-components/Electrolysis.html" class="hm-btn">View Details</a>
+            </div>
+        </div>
+
+        <div class="hm-card">
+            <img src="../images/Services/pdt.png">
+            <div class="hm-overlay">
+                <h3>PDT</h3>
+                <a href="./Service-components/PDT.html" class="hm-btn">View Details</a>
+            </div>
+        </div>
+
+        <div class="hm-card">
+            <img src="../images/Services/hair.png">
+            <div class="hm-overlay">
+                <h3>Hair Removal</h3>
+                <a href="./Service-components/Hair Removal.html" class="hm-btn">View Details</a>
+            </div>
+        </div>
+
+        <div class="hm-card">
+            <img src="../images/Services/bleach.png">
+            <div class="hm-overlay">
+                <h3>Hair Bleaching</h3>
+                <a href="./Service-components/Hair Bleaching.html" class="hm-btn">View Details</a>
+            </div>
+        </div>
+
+        <div class="hm-card">
+            <img src="../images/Botox.webp">
+            <div class="hm-overlay">
+                <h3>Botox & Fillers</h3>
+                <a href="./Service-components/Botox & Fillers.html" class="hm-btn">View Details</a>
+            </div>
+        </div>
+
+        <div class="hm-card">
+            <img src="../images/Hydra-Glow.webp">
+            <div class="hm-overlay">
+                <h3>Hydra-Glow</h3>
+                <a href="./Service-components/Hydra-Glow.html" class="hm-btn">View Details</a>
+            </div>
+        </div>
+
+        <div class="hm-card">
+            <img src="../images/iv.webp">
+            <div class="hm-overlay">
+                <h3>IV Nutrients</h3>
+                <a href="./Service-components/IV Nutrients.html" class="hm-btn">View Details</a>
+            </div>
+        </div>
+
+        <div class="hm-card">
+            <img src="../images/jaw.webp">
+            <div class="hm-overlay">
+                <h3>Jawline Sculpt</h3>
+                <a href="./Service-components/Jawline Sculpt.html" class="hm-btn">View Details</a>
+            </div>
+        </div>
+
+        <div class="hm-card">
+            <img src="../images/chem.webp">
+            <div class="hm-overlay">
+                <h3>Chemical Peels</h3>
+                <a href="./Service-components/Chemical Peels.html" class="hm-btn">View Details</a>
+            </div>
+        </div>
+
+        <div class="hm-card">
+            <img src="../images/Services/drip.png">
+            <div class="hm-overlay">
+                <h3>Whitening Drips</h3>
+                <a href="./Service-components/Whitening Drips.html" class="hm-btn">View Details</a>
+            </div>
+        </div>
+
+        <div class="hm-card">
+            <img src="../images/microo.webp">
+            <div class="hm-overlay">
+                <h3>Whitening Shorts</h3>
+                <a href="./Service-components/Whitening Shorts.html" class="hm-btn">View Details</a>
+            </div>
+        </div>
+
+        <div class="hm-card">
+            <img src="../images/Services/nedling.png">
+            <div class="hm-overlay">
+                <h3>Dry Needling</h3>
+                <a href="./Service-components/Dry Needling.html" class="hm-btn">View Details</a>
+            </div>
+        </div>
+
+        <div class="hm-card">
+            <img src="../images/Services/cupp.png">
+            <div class="hm-overlay">
+                <h3>Cupping</h3>
+                <a href="./Service-components/Cupping.html" class="hm-btn">View Details</a>
+            </div>
+        </div>
+
+        <div class="hm-card">
+            <img src="../images/nano.webp">
+            <div class="hm-overlay">
+                <h3>Nano Fat Grafting</h3>
+                <a href="./Service-components/Nano Fat Grafting.html" class="hm-btn">View Details</a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+  
+ 
+
+     
+    <!--whatappp-->
+    <a
+      href="https://wa.me/923286658507?text=Hello!%20I%20want%20to%20book%20an%20appointment%20at%20HM%20Aesthetic."
+      class="whatsapp-float"
+      target="_blank"
+    >
+      <div class="whatsapp-content">
         <span class="wa-text">Chat with us</span>
         <svg class="wa-icon" viewBox="0 0 448 512">
-            <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.2-8.5-44.2-27.1-16.4-14.6-27.4-32.7-30.6-38.1-3.2-5.5-.3-8.5 2.4-11.2 2.5-2.5 5.5-6.5 8.3-9.7 2.8-3.2 3.7-5.5 5.5-9.2 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.3 5.7 23.6 9.2 31.7 11.7 13.3 4.2 25.4 3.6 35 2.2 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+          <path
+            d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.2-8.5-44.2-27.1-16.4-14.6-27.4-32.7-30.6-38.1-3.2-5.5-.3-8.5 2.4-11.2 2.5-2.5 5.5-6.5 8.3-9.7 2.8-3.2 3.7-5.5 5.5-9.2 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.3 5.7 23.6 9.2 31.7 11.7 13.3 4.2 25.4 3.6 35 2.2 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"
+          />
         </svg>
+      </div>
+    </a>
+    <style>
+      /* WhatsApp Float Styling */
+      .whatsapp-float {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        z-index: 9999;
+        text-decoration: none;
+        transition: all 0.4s ease;
+      }
+
+      .whatsapp-content {
+        background-color: #25d366; /* WhatsApp Green */
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 20px;
+        border-radius: 50px;
+        box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease;
+      }
+
+      .wa-text {
+        color: white;
+        font-family: "Syne", sans-serif;
+        font-weight: 700;
+        font-size: 0.85rem;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+
+      .wa-icon {
+        width: 24px;
+        height: 24px;
+        fill: white;
+      }
+
+      /* Hover Animation */
+      .whatsapp-float:hover {
+        transform: translateY(-5px);
+      }
+
+      .whatsapp-float:hover .whatsapp-content {
+        background-color: #20ba5a;
+        box-shadow: 0 15px 30px rgba(37, 211, 102, 0.5);
+      }
+
+      /* --- MOBILE RESPONSIVE --- */
+      @media (max-width: 768px) {
+        .whatsapp-float {
+          bottom: 20px;
+          right: 20px;
+        }
+
+        .wa-text {
+          display: none; /* Mobile par sirf icon dikhega taake screen cover na ho */
+        }
+
+        .whatsapp-content {
+          padding: 15px; /* Circle shape for mobile */
+          border-radius: 50%;
+        }
+
+        .wa-icon {
+          width: 30px;
+          height: 30px;
+        }
+      }
+    </style>
+
+
+<!--footerrrrrrrrrrr-->
+<footer class="pro-max-footer">
+    <div class="footer-video-bg">
+        <video autoplay muted loop playsinline>
+            <source src="../videos/footer.webm" type="video/mp4">
+        </video>
+        <div class="footer-overlay"></div>
     </div>
-</a>
-<style>
-    /* WhatsApp Float Styling */
-.whatsapp-float {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    z-index: 9999;
-    text-decoration: none;
-    transition: all 0.4s ease;
-}
 
-.whatsapp-content {
-    background-color: #25d366; /* WhatsApp Green */
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 12px 20px;
-    border-radius: 50px;
-    box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
-    border: 2px solid rgba(255, 255, 255, 0.1);
-    transition: all 0.3s ease;
-}
+    <div class="container-center relative-z footer-content">
+        <div class="footer-grid">
+            <div class="footer-col brand-col">
+                <h2 class="brand-name">HM <span class="aesthetic-word">Aesthetic</span></h2>
+                <p class="footer-tagline">Redefining the standards of non-surgical excellence.</p>
+                <div class="social-links">
+                    <a href="#" class="social-icon">Instagram</a>
+                    <a href="#" class="social-icon">Facebook</a>
+                    <a href="https://wa.me/923286658507?text=Hello!%20I%20want%20to%20book%20an%20appointment%20at%20HM%20Aesthetic." class="social-icon">WhatsApp</a>
+                </div>
+            </div>
 
-.wa-text {
-    color: white;
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 0.85rem;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-}
+            <div class="footer-col">
+                <span class="footer-label">Location</span>
+                <p class="footer-info">Phase 5, DHA, <br>Lahore, Pakistan</p>
+            </div>
 
-.wa-icon {
-    width: 24px;
-    height: 24px;
-    fill: white;
-}
+            <div class="footer-col">
+                <span class="footer-label">Contact</span>
+                <p class="footer-info">info@hmaesthetic.site <br>+92 328 6658507</p>
+            </div>
+        </div>
 
-/* Hover Animation */
-.whatsapp-float:hover {
-    transform: translateY(-5px);
-}
-
-.whatsapp-float:hover .whatsapp-content {
-    background-color: #20ba5a;
-    box-shadow: 0 15px 30px rgba(37, 211, 102, 0.5);
-}
-
-/* --- MOBILE RESPONSIVE --- */
-@media (max-width: 768px) {
-    .whatsapp-float {
-        bottom: 20px;
-        right: 20px;
-    }
-    
-    .wa-text {
-        display: none; /* Mobile par sirf icon dikhega taake screen cover na ho */
-    }
-    
-    .whatsapp-content {
-        padding: 15px; /* Circle shape for mobile */
-        border-radius: 50%;
-    }
-
-    .wa-icon {
-        width: 30px;
-        height: 30px;
-    }
-}
-</style>
-</body>
+        <div class="footer-bottom">
+            <p>&copy; 2026 HM AESTHETIC. ALL RIGHTS RESERVED.</p>
+            <p class="credit">DESIGNED BY <a href="https://codecrafte.site/" target="_blank" class="designer-link">CODE CRAFTE</a></p>
+        </div>
+    </div>
+</footer>
+  </body>
 </html>

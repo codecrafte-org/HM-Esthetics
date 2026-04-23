@@ -37,7 +37,7 @@
    <header class="navbar" id="main-nav">
     <div class="nav-container">
         <div class="nav-left desktop-only">
-            <a href="#services" class="nav-link">Treatments</a>
+            <a href="./Components/service.html" class="nav-link">Services</a>
             <a href="./Components/Gallary.html" class="nav-link">Gallery</a>
         </div>
  <div class="nav-logo">
@@ -101,7 +101,7 @@
 
         <div class="nav-right">
             <div class="desktop-only">
-                <a href="#faq" class="nav-link" style="margin-right: 20px;">FAQs</a>
+                <a href="./Components/product.html" class="nav-link" style="margin-right: 20px;">Product</a>
                 <button class="book-btn">Book Now</button>
             </div>
             
@@ -116,32 +116,15 @@
     <aside class="sidebar" id="sidebar">
         <div class="close-sidebar" id="close-btn">&times;</div>
         <nav class="sidebar-nav">
-            <a href="#home">Home</a>
-            <a href="#services">Services</a>
+            
+            <a href="./Components/service.html">Services</a>
             <a href="./Components/Gallary.html">Gallery</a>
-            <a href="#contact">Contact</a>
+            <a href="./Components/product.html">Product</a>
+            <a href="./Components/Ordernow.html">Order Now</a>
         </nav>
     </aside>
-
-    <main>
-        <section class="hero-video-section">
-            <div class="video-overlay"></div>
-            <video autoplay muted loop playsinline class="bg-video">
-                <source src="./videos/hero.webm" type="video/mp4">
-            </video>
-
-            <div class="hero-content">
-                <span class="script-reveal">Timeless Elegance</span>
-                <h1 class="hero-title">Reimagining <br><span class="stylish-accent">Human Art.</span></h1>
-                <p class="hero-desc">Bespoke aesthetic treatments tailored to your unique anatomy.</p>
-                <a href="#services"><button class="btn-primary">Explore Services</button></a>
-            </div>
-        </section>
-    </main>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="script.js"></script>
-    <script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+     <script>
         const menuBtn = document.getElementById('menu-btn');
 const sidebar = document.getElementById('sidebar');
 const closeBtn = document.getElementById('close-btn');
@@ -170,6 +153,23 @@ gsap.from(".hero-content > *", {
     y: 30, opacity: 0, duration: 1, stagger: 0.2, ease: "power3.out"
 });
     </script>
+    <main>
+        <section class="hero-video-section">
+            <div class="video-overlay"></div>
+            <video autoplay muted loop playsinline class="bg-video">
+                <source src="./videos/hero.webm" type="video/mp4">
+            </video>
+
+            <div class="hero-content">
+                <span class="script-reveal">Timeless Elegance</span>
+                <h1 class="hero-title">Reimagining <br><span class="stylish-accent">Human Art.</span></h1>
+                <p class="hero-desc">Bespoke aesthetic treatments tailored to your unique anatomy.</p>
+                <a href="./Components/Ordernow.html"><button class="btn-primary">Book Now</button></a>
+            </div>
+        </section>
+    </main>
+
+   
 
 
 <!--kkkkkkkkkkkkkkkkkkkkkkkkkk-->
@@ -183,9 +183,8 @@ gsap.from(".hero-content > *", {
     <div class="experience-overlay">
         <div class="container-center">
             <div class="magnetic-content">
-                <span class="sub-reveal">Beyond Conventional</span>
-                <h2 class="main-reveal">Where Art Meets <br> <span class="outline-white">Anatomy</span></h2>
-                <p class="desc-reveal">Experience a transformation that feels as natural as it looks. We don't just treat; we curate your best version.</p>
+                 <h2 class="main-reveal"> Mastering Facial <br> <span class="outline-white">Art</span></h2>
+                <p class="desc-reveal">Advanced aesthetics tailored for you. Experience the gold standard of care.</p>
                 
                 <div class="stat-grid">
                     <div class="stat-item">
@@ -193,7 +192,7 @@ gsap.from(".hero-content > *", {
                         <span class="stat-txt">Client Satisfaction</span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-num">15k+</span>
+                        <span class="stat-num">35+</span>
                         <span class="stat-txt">Successful Procedures</span>
                     </div>
                 </div>
@@ -246,76 +245,90 @@ gsap.from(".stat-num", {
 <section class="services-final">
     <div class="elite-header-center" style="text-align: center; margin-bottom: 50px;">
         <span class="script-tag" style="color: #d4b499; font-style: italic; font-size: 1.5rem;">Elite Care</span>
-        <h2 style="color: #fff; font-family: 'Syne'; font-size: 3rem; text-transform: uppercase;">Our <span style="-webkit-text-stroke: 1px #fff; color: transparent;">Treatments</span></h2>
+        <h2 style="color: #fff; font-family: 'Syne'; font-size: 3rem; text-transform: uppercase;">Our <span style="-webkit-text-stroke: 1px #fff; color: transparent;">Top Services</span></h2>
     </div>
 
     <div class="marquee-wrapper">
         <div class="marquee-content">
             <div class="s-card">
-                <img src="./images/Botox.webp" alt="Botox">
+                <img src="./images/Prp.webp" alt="prp">
                 <div class="s-overlay">
-                    <h3>Botox & Fillers</h3>
-                    <a href="#" class="s-btn">See Pricing</a>
+                    <h3>PRP</h3>
+                    <a href="./Components/Service-components/prp.html" class="s-btn">See Details</a>
                 </div>
             </div>
             <div class="s-card">
-                <img src="./images/Hydra-Glow.webp" alt="hydra">
+                <img src="./images/microo.webp" alt="hydra">
                 <div class="s-overlay">
-                    <h3>Hydra-Glow</h3>
-                    <a href="#" class="s-btn">See More</a>
+                    <h3>Microneedling</h3>
+                    <a href="./Components/Service-components/Microneedling.html" class="s-btn">See Details</a>
                 </div>
             </div>
             <div class="s-card">
-                <img src="./images/laser.webp" alt="laser">
+                <img src="./images/Services/thread.png" alt="Thread">
                 <div class="s-overlay">
-                    <h3>Laser Therapy</h3>
-                    <a href="#" class="s-btn">See Pricing</a>
+                    <h3>Thread Therapy</h3>
+                    <a href="./Components/Service-components/Thread.html" class="s-btn">See Details</a>
                 </div>
             </div>
             <div class="s-card">
-                <img src="./images/iv.webp" alt="IV">
+                <img src="./images/Services/Electro.png" alt="Electrolysis">
                 <div class="s-overlay">
-                    <h3>IV Nutrients</h3>
-                    <a href="#" class="s-btn">See More</a>
+                    <h3>Electrolysis</h3>
+                    <a href="./Components/Service-components/Electrolysis.html" class="s-btn">See Details</a>
                 </div>
             </div>
             <div class="s-card">
-                <img src="./images/jaw.webp" alt="JAW">
+                <img src="./images/Services/pdt.png" alt="pdt">
                 <div class="s-overlay">
-                    <h3>Jawline Sculpt</h3>
-                    <a href="#" class="s-btn">See Pricing</a>
+                    <h3>PDT</h3>
+                    <a href="./Components/Service-components/PDT.html" class="s-btn">See Details</a>
                 </div>
             </div>
-            <div class="s-card">
-                <img src="./images/chem.webp" alt="Chemical">
-                <div class="s-overlay">
-                    <h3>Chemical Peels</h3>
-                    <a href="#" class="s-btn">See More</a>
-                </div>
-            </div>
-             <div class="s-card"><img src="./images/microo.webp" alt=""micro><div class="s-overlay"><h3>Microneedling</h3><a href="#" class="s-btn">See Pricing</a></div></div>
-            <div class="s-card"><img src="./images/Prp.webp" alt="prp"><div class="s-overlay"><h3>PRP</h3><a href="#" class="s-btn">See More</a></div></div>
-            <div class="s-card"><img src="./images/nano.webp" alt="nano"><div class="s-overlay"><h3>Nano fat grafting</h3><a href="#" class="s-btn">See Pricing</a></div></div>
-            <div class="s-card"><img src="./images/tred.webp" alt="tred"><div class="s-overlay"><h3>Threads</h3><a href="#" class="s-btn">See More</a></div></div>
-        
-
-            <div class="s-card"><img src="./images/Botox.webp" alt="botox"><div class="s-overlay"><h3>Botox & Fillers</h3><a href="#" class="s-btn">See Pricing</a></div></div>
-            <div class="s-card"><img src="./images/Hydra-Glow.webp" alt="hydra"><div class="s-overlay"><h3>Hydra-Glow</h3><a href="#" class="s-btn">See More</a></div></div>
-            <div class="s-card"><img src="./images/laser.webp" alt="laser"><div class="s-overlay"><h3>Laser Therapy</h3><a href="#" class="s-btn">See Pricing</a></div></div>
-            <div class="s-card"><img src="./images/iv.webp" alt="IV"><div class="s-overlay"><h3>IV Nutrients</h3><a href="#" class="s-btn">See More</a></div></div>
-            <div class="s-card"><img src="./images/jaw.webp" alt="jaw"><div class="s-overlay"><h3>Jawline Sculpt</h3><a href="#" class="s-btn">See Pricing</a></div></div>
-            <div class="s-card"><img src="./images/chem.webp" alt="chem"><div class="s-overlay"><h3>Chemical Peels</h3><a href="#" class="s-btn">See More</a></div></div>
             
-            <div class="s-card"><img src="./images/microo.webp" alt="micro"><div class="s-overlay"><h3>Microneedling</h3><a href="#" class="s-btn">See Pricing</a></div></div>
-            <div class="s-card"><img src="./images/Prp.webp" alt="prp"><div class="s-overlay"><h3>PRP</h3><a href="#" class="s-btn">See More</a></div></div>
-            <div class="s-card"><img src="./images/nano.webp" alt="nano"><div class="s-overlay"><h3>Nano fat grafting</h3><a href="#" class="s-btn">See Pricing</a></div></div>
-            <div class="s-card"><img src="./images/tred.webp" alt="tred"><div class="s-overlay"><h3>Threads</h3><a href="#" class="s-btn">See More</a></div></div>
+
+            <div class="s-card">
+                <img src="./images/Prp.webp" alt="prp">
+                <div class="s-overlay">
+                    <h3>PRP</h3>
+                    <a href="./Components/Service-components/prp.html" class="s-btn">See Details</a>
+                </div>
+            </div>
+            <div class="s-card">
+                <img src="./images/microo.webp" alt="hydra">
+                <div class="s-overlay">
+                    <h3>Microneedling</h3>
+                    <a href="./Components/Service-components/Microneedling.html" class="s-btn">See Details</a>
+                </div>
+            </div>
+            <div class="s-card">
+                <img src="./images/Services/thread.png" alt="Thread">
+                <div class="s-overlay">
+                    <h3>Thread Therapy</h3>
+                    <a href="./Components/Service-components/Thread.html" class="s-btn">See Details</a>
+                </div>
+            </div>
+            <div class="s-card">
+                <img src="./images/Services/Electro.png" alt="Electrolysis">
+                <div class="s-overlay">
+                    <h3>Electrolysis</h3>
+                    <a href="./Components/Service-components/Electrolysis.html" class="s-btn">See Details</a>
+                </div>
+            </div>
+            <div class="s-card">
+                <img src="./images/Services/pdt.png" alt="pdt">
+                <div class="s-overlay">
+                    <h3>PDT</h3>
+                    <a href="./Components/Service-components/PDT.html" class="s-btn">See Details</a>
+                </div>
+            </div>
+            
         
         </div>
     </div>
 
     <div style="display: flex; justify-content: center; margin-top: 50px;">
-        <button class="btn-primary">View All Services</button>
+        <a href="./Components/service.html"><button class="btn-primary">View All Services</button></a>
     </div>
 </section>
 
@@ -407,7 +420,7 @@ boxes.forEach(box => {
             <p class="analysis-p">Professional assessment for your unique glow.</p>
             
             <div class="btn-wrapper">
-                <a href="#" class="cta-luxury-btn">
+                <a href="https://wa.me/923286658507?text=Hello!%20I%20want%20to%20book%20an%20appointment%20at%20HM%20Aesthetic." class="social-icon" class="cta-luxury-btn">
                     Start Virtual Consultation
                 </a>
             </div>
@@ -557,7 +570,7 @@ container.addEventListener('mouseleave', () => {
                 </div>
 
                 <div style="margin-top: 40px;">
-                    <button class="btn-primary" onclick="window.location.href='#gallery'">Explore Gallery</button>
+                    <a href="./Components/Gallary.html"><button class="btn-primary" onclick="window.location.href='#gallery'">Explore Gallery</button></a>
                 </div>
             </div>
         </div>
@@ -645,8 +658,8 @@ container.addEventListener('mouseleave', () => {
             <p class="cta-sub">Experience the gold standard of aesthetic care with Dr. Hassan Mehmood.</p>
             
             <div class="cta-button-group">
-                <a href="https://wa.me/yournumber" class="btn-primary-gold">Book Appointment</a>
-                <a href="tel:+920000000" class="btn-outline-white">Consult an Expert</a>
+                <a href="https://wa.me/923286658507" class="btn-primary-gold">Book Appointment</a>
+                <a href="tel:+923286658507" class="btn-outline-white">Consult an Expert</a>
             </div>
         </div>
     </div>
@@ -667,7 +680,7 @@ container.addEventListener('mouseleave', () => {
     /* WhatsApp Float Styling */
 .whatsapp-float {
     position: fixed;
-    bottom: 30px;
+    bottom: 100px;
     right: 30px;
     z-index: 9999;
     text-decoration: none;
@@ -763,7 +776,7 @@ container.addEventListener('mouseleave', () => {
 
             <div class="footer-col">
                 <span class="footer-label">Contact</span>
-                <p class="footer-info">info@hmaesthetic.com <br>+92 328 6658507</p>
+                <p class="footer-info">info@hmaesthetic.site <br>+92 328 6658507</p>
             </div>
         </div>
 

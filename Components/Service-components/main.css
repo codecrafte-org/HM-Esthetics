@@ -1,0 +1,89 @@
+
+        :root {
+            --primary: #d4b499;
+            --bg: #050505;
+            --card-bg: #0d0d0d;
+            --text-dim: #a0a0a0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
+        body { background: var(--bg); font-family: 'Syne', sans-serif; color: #fff; line-height: 1.5; overflow-x: hidden; }
+
+        /* --- Custom Navigation --- */
+        .top-nav {
+            position: fixed; top: 0; width: 100%; padding: 20px 5%;
+            z-index: 100; display: flex; align-items: center;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+        }
+        .back-btn {
+            text-decoration: none; color: #fff; font-size: 0.8rem;
+            text-transform: uppercase; letter-spacing: 2px;
+            display: flex; align-items: center; gap: 10px; transition: 0.3s;
+        }
+        .back-btn:hover { color: var(--primary); transform: translateX(-5px); }
+
+        /* --- Header Section --- */
+        .header-content { padding: 120px 5% 40px; text-align: center; }
+        .header-content h1 { 
+            font-size: clamp(2.5rem, 10vw, 6rem); font-weight: 800; 
+            text-transform: uppercase; line-height: 1; margin-bottom: 20px;
+        }
+        
+        /* --- Featured Image with Filter --- */
+        .featured-img-container {
+            width: 90%; max-width: 1200px; margin: 0 auto 60px;
+            height: 500px; border-radius: 20px; overflow: hidden;
+            position: relative; border: 1px solid rgba(255,255,255,0.1);
+        }
+        .featured-img-container img {
+            width: 100%; height: 100%; object-fit: cover;
+            filter: grayscale(30%) contrast(1.1) brightness(0.8); /* Subtle Filter */
+        }
+        .img-overlay-blur {
+            position: absolute; bottom: 0; width: 100%; height: 100px;
+            background: linear-gradient(to top, var(--bg), transparent);
+        }
+
+        /* --- Detailed Info Grid --- */
+        .detail-wrapper { max-width: 1000px; margin: 0 auto; padding: 0 5% 100px; }
+        
+        .main-desc { font-size: 1.2rem; color: var(--text-dim); margin-bottom: 50px; text-align: center; }
+
+        .pricing-panel {
+            background: var(--card-bg); border: 1px solid rgba(212,180,153,0.3);
+            border-radius: 25px; padding: 40px; margin-bottom: 60px;
+            display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px;
+        }
+        .price-item h4 { color: var(--primary); font-size: 0.8rem; text-transform: uppercase; margin-bottom: 5px; }
+        .price-item p { font-size: 1.8rem; font-weight: 700; }
+
+        .book-now-fixed {
+            background: var(--primary); color: #000; padding: 15px 35px;
+            border-radius: 50px; text-decoration: none; font-weight: 800;
+            font-size: 0.8rem; text-transform: uppercase; transition: 0.3s;
+        }
+        .book-now-fixed:hover { background: #fff; transform: translateY(-3px); }
+
+        /* --- Personalisation Section --- */
+        .grid-info { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 80px; }
+        .info-card { padding: 30px; border-left: 2px solid var(--primary); background: rgba(255,255,255,0.02); }
+        .info-card h3 { font-size: 1rem; text-transform: uppercase; margin-bottom: 15px; color: var(--primary); }
+        .info-card ul { list-style: none; color: var(--text-dim); font-size: 0.95rem; }
+        .info-card li { margin-bottom: 10px; }
+
+        /* --- FAQ Minimalist --- */
+        .faq-section { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 60px; }
+        .faq-item { margin-bottom: 30px; }
+        .faq-item h5 { font-size: 1.1rem; margin-bottom: 10px; color: #fff; }
+        .faq-item p { color: var(--text-dim); font-size: 0.9rem; }
+
+        /* --- Mobile Responsive Fixes --- */
+        @media (max-width: 768px) {
+            .header-content { padding-top: 100px; }
+            .featured-img-container { height: 300px; width: 95%; }
+            .grid-info { grid-template-columns: 1fr; }
+            .pricing-panel { flex-direction: column; text-align: center; }
+            .price-item p { font-size: 1.5rem; }
+            .main-desc { font-size: 1rem; }
+        }
+    
